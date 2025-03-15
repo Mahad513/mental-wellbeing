@@ -1,0 +1,29 @@
+modules = ["web", "nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+
+[workflows]
+runButton = "Run Frontend"
+
+[[workflows.workflow]]
+name = "Start Server"
+author = 40507954
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node backend/server.js"
+
+[[workflows.workflow]]
+name = "Run Frontend"
+author = 40507954
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node index.js"
